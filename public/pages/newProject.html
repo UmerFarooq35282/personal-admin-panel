@@ -14,9 +14,57 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
+    <!-- Tom Select CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css"
+      rel="stylesheet"
+    />
+
     <style>
       .transition-all {
         transition: all 0.3s ease;
+      }
+
+      /* Tom Select dark mode styles */
+      .dark .ts-wrapper {
+        background-color: #1f2937 !important; /* dark:bg-gray-800 */
+        border-color: #4b5563 !important; /* dark:border-gray-600 */
+        color: #f9fafb !important; /* dark:text-white */
+      }
+
+      .dark .ts-control {
+        background-color: #1f2937 !important;
+        border-color: #4b5563 !important;
+        color: #f9fafb !important;
+      }
+
+      .dark .ts-dropdown {
+        background-color: #1f2937 !important;
+        border-color: #4b5563 !important;
+        color: #f9fafb !important;
+      }
+
+      .dark .ts-dropdown .option:hover {
+        background-color: #374151 !important; /* dark:hover:bg-gray-700 */
+      }
+
+      .dark .ts-wrapper.multi .ts-control > div {
+        background-color: #2563eb !important; /* dark:bg-blue-600 */
+        color: #fff !important;
+        border-color: #3b82f6 !important;
+      }
+
+      .dark .ts-wrapper.multi .ts-control > div .remove {
+        color: #fff !important;
+      }
+
+      .dark .ts-wrapper.multi .ts-control > div .remove:hover {
+        color: #f87171 !important; /* red-400 */
+      }
+
+      .dark .ts-control input {
+        background-color: #1f2937 !important;
+        color: #f9fafb !important;
       }
     </style>
   </head>
@@ -58,6 +106,12 @@
               <i class="fas fa-chart-line"></i> Dashboard
             </a>
             <a
+              href="categories.html"
+              class="flex items-center gap-2 p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700"
+            >
+              <i class="fas fa-folder-open"></i> Categories
+            </a>
+            <a
               href="projects.html"
               class="flex items-center gap-2 p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700"
             >
@@ -94,14 +148,8 @@
 
       <div class="flex-1 flex flex-col">
         <header
-          class="hidden md:flex justify-between items-center bg-white dark:bg-gray-800 px-6 py-4 shadow"
+          class="hidden md:flex justify-end items-center bg-white dark:bg-gray-800 px-6 py-4 shadow"
         >
-          <input
-            type="text"
-            placeholder="Search..."
-            class="border px-4 py-2 rounded-md w-1/3 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-          />
-
           <div class="flex items-center gap-4 flex-wrap">
             <button
               class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
@@ -180,6 +228,31 @@
                   ></textarea>
                 </div>
 
+                <!-- Categories -->
+                <div class="mb-4">
+                  <label
+                    for="categoryTags"
+                    class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+                  >
+                    Select Categories
+                  </label>
+
+                  <select
+                    id="categoryTags"
+                    name="categories[]"
+                    multiple
+                    autocomplete="off"
+                    class="w-full border border-gray-300 dark:border-gray-600 rounded-md py-2 px-3 text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  >
+                    <option value="frontend">Frontend</option>
+                    <option value="backend">Backend</option>
+                    <option value="fullstack">Full Stack</option>
+                    <option value="react">React</option>
+                    <option value="vanillajs">Vanilla JS</option>
+                    <option value="flutter">Flutter</option>
+                  </select>
+                </div>
+
                 <!-- Status -->
                 <div>
                   <label
@@ -197,6 +270,36 @@
                     <option value="on-hold">On Hold</option>
                     <option value="completed">Completed</option>
                   </select>
+                </div>
+
+                <!-- Website URL + GitHub URL -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label
+                      class="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-300"
+                      for="websiteUrl"
+                      >Website URL</label
+                    >
+                    <input
+                      id="websiteUrl"
+                      type="url"
+                      placeholder="https://example.com"
+                      class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md dark:bg-gray-700 dark:text-white focus:outline-none focus:ring focus:border-blue-500 transition"
+                    />
+                  </div>
+                  <div>
+                    <label
+                      class="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-300"
+                      for="githubUrl"
+                      >GitHub URL</label
+                    >
+                    <input
+                      id="githubUrl"
+                      type="url"
+                      placeholder="https://github.com/yourrepo"
+                      class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md dark:bg-gray-700 dark:text-white focus:outline-none focus:ring focus:border-blue-500 transition"
+                    />
+                  </div>
                 </div>
 
                 <!-- Buttons -->
@@ -220,6 +323,41 @@
         </main>
       </div>
     </div>
+
+    <!-- Tom Select JS -->
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
+
+    <script>
+      new TomSelect("#categoryTags", {
+        plugins: ["remove_button"],
+        persist: false,
+        create: true,
+        delimiter: ",",
+        render: {
+          item: function (data, escape) {
+            return `<div class="px-2 py-1 mr-1 mb-1 bg-blue-600 text-white rounded inline-block">${escape(
+              data.text
+            )}</div>`;
+          },
+        },
+      });
+
+      // Show alert or handle submitted tags
+      document
+        .getElementById("addCategoryForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const select = document.getElementById("categoryTags");
+          const selected = Array.from(select.selectedOptions).map(
+            (option) => option.value
+          );
+
+          alert(`Selected Categories:\n${selected.join(", ")}`);
+          closeModal();
+          this.reset();
+          select.tomselect.clear(); // Reset Tom Select UI
+        });
+    </script>
 
     <script type="module" src="../js/script.js"></script>
   </body>

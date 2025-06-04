@@ -58,13 +58,13 @@
               <i class="fas fa-chart-line"></i> Dashboard
             </a>
             <a
-              href="categories.html"
+              href="#"
               class="flex items-center gap-2 p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700"
             >
               <i class="fas fa-folder-open"></i> Categories
             </a>
             <a
-              href="#"
+              href="projects.html"
               class="flex items-center gap-2 p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700"
             >
               <i class="fas fa-folder-open"></i> Projects
@@ -130,106 +130,135 @@
           </div>
         </header>
 
-        <main class="p-6 space-y-6">
-          <div class="flex items-center justify-between">
-            <h1 class="text-2xl font-bold text-gray-800 dark:text-gray-100">
-              My Projects
+        <main class="p-6">
+          <div class="flex justify-between items-center mb-6">
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
+              Project Categories
             </h1>
             <button
-              class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+              onclick="openModal()"
+              class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 flex items-center gap-2"
             >
-              <a href="newProject.html">+ New Project</a>
+              <i class="fas fa-plus"></i> Add New Category
             </button>
           </div>
 
-          <!-- Projects Grid -->
-          <div class="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-            <!-- Project Card -->
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+          >
+            <!-- Category Cards -->
             <div
-              class="bg-white dark:bg-gray-800 shadow rounded-lg p-6 transition-all hover:shadow-xl"
+              class="bg-white dark:bg-gray-800 rounded-lg shadow p-4 text-center"
             >
-              <div class="flex items-center justify-between mb-4">
-                <h2
-                  class="text-lg font-semibold text-gray-800 dark:text-gray-100"
-                >
-                  Project Alpha
-                </h2>
-                <span class="text-sm text-green-600 dark:text-green-400"
-                  >Active</span
-                >
-              </div>
-              <p class="text-gray-600 dark:text-gray-400 mb-4">
-                A web application for managing employee records and payroll.
-              </p>
-              <div class="flex justify-between items-center">
-                <button
-                  class="text-sm bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
-                >
-                  View
-                </button>
-                <span class="text-xs text-gray-500 dark:text-gray-400"
-                  >Last updated: Jun 1, 2025</span
-                >
-              </div>
+              <i class="fas fa-code text-3xl text-indigo-500 mb-2"></i>
+              <h2 class="text-lg font-semibold">Frontend Projects</h2>
             </div>
-
-            <!-- Duplicate the card structure for more projects -->
             <div
-              class="bg-white dark:bg-gray-800 shadow rounded-lg p-6 transition-all hover:shadow-xl"
+              class="bg-white dark:bg-gray-800 rounded-lg shadow p-4 text-center"
             >
-              <div class="flex items-center justify-between mb-4">
-                <h2
-                  class="text-lg font-semibold text-gray-800 dark:text-gray-100"
-                >
-                  Marketing Campaign
-                </h2>
-                <span class="text-sm text-yellow-500">Pending</span>
-              </div>
-              <p class="text-gray-600 dark:text-gray-400 mb-4">
-                Designing and launching a new marketing campaign for summer
-                2025.
-              </p>
-              <div class="flex justify-between items-center">
-                <button
-                  class="text-sm bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
-                >
-                  View
-                </button>
-                <span class="text-xs text-gray-500 dark:text-gray-400"
-                  >Last updated: May 28, 2025</span
-                >
-              </div>
+              <i class="fas fa-database text-3xl text-green-500 mb-2"></i>
+              <h2 class="text-lg font-semibold">Backend Projects</h2>
             </div>
-
             <div
-              class="bg-white dark:bg-gray-800 shadow rounded-lg p-6 transition-all hover:shadow-xl"
+              class="bg-white dark:bg-gray-800 rounded-lg shadow p-4 text-center"
             >
-              <div class="flex items-center justify-between mb-4">
-                <h2
-                  class="text-lg font-semibold text-gray-800 dark:text-gray-100"
-                >
-                  E-commerce Platform
+              <i class="fas fa-laptop-code text-3xl text-purple-500 mb-2"></i>
+              <h2 class="text-lg font-semibold">Full Stack</h2>
+            </div>
+            <div
+              class="bg-white dark:bg-gray-800 rounded-lg shadow p-4 text-center"
+            >
+              <i class="fab fa-react text-3xl text-blue-400 mb-2"></i>
+              <h2 class="text-lg font-semibold">React Projects</h2>
+            </div>
+            <div
+              class="bg-white dark:bg-gray-800 rounded-lg shadow p-4 text-center"
+            >
+              <i class="fab fa-js-square text-3xl text-yellow-400 mb-2"></i>
+              <h2 class="text-lg font-semibold">Vanilla JS</h2>
+            </div>
+            <div
+              class="bg-white dark:bg-gray-800 rounded-lg shadow p-4 text-center"
+            >
+              <i class="fab fa-google-play text-3xl text-teal-400 mb-2"></i>
+              <h2 class="text-lg font-semibold">Flutter Apps</h2>
+            </div>
+          </div>
+
+          <!-- Modal -->
+          <div
+            id="categoryModal"
+            class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50"
+          >
+            <div
+              class="bg-white dark:bg-gray-800 rounded-lg p-6 w-full max-w-md shadow-lg"
+            >
+              <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-bold text-gray-900 dark:text-white">
+                  Add New Category
                 </h2>
-                <span class="text-sm text-red-500">On Hold</span>
-              </div>
-              <p class="text-gray-600 dark:text-gray-400 mb-4">
-                Developing a scalable e-commerce platform with secure checkout.
-              </p>
-              <div class="flex justify-between items-center">
                 <button
-                  class="text-sm bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
+                  onclick="closeModal()"
+                  class="text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-white text-xl"
                 >
-                  View
+                  &times;
                 </button>
-                <span class="text-xs text-gray-500 dark:text-gray-400"
-                  >Last updated: May 15, 2025</span
-                >
               </div>
+              <form id="addCategoryForm" class="space-y-4">
+                <div>
+                  <label
+                    class="block mb-1 text-gray-700 dark:text-gray-300"
+                    for="categoryName"
+                    >Category Name</label
+                  >
+                  <input
+                    type="text"
+                    id="categoryName"
+                    name="categoryName"
+                    class="w-full px-4 py-2 rounded border dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                    required
+                  />
+                </div>
+                <div class="text-right">
+                  <button
+                    type="submit"
+                    class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+                  >
+                    Add Category
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </main>
       </div>
     </div>
+
+    <script>
+      const modal = document.getElementById("categoryModal");
+
+      function openModal() {
+        modal.classList.remove("hidden");
+      }
+
+      function closeModal() {
+        modal.classList.add("hidden");
+      }
+
+      document
+        .getElementById("addCategoryForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const name = document.getElementById("categoryName").value;
+
+          if (name.trim()) {
+            // You can send to backend or dynamically add it here
+            alert(`Category "${name}" added!`);
+            closeModal();
+            this.reset();
+          }
+        });
+    </script>
 
     <script type="module" src="../js/script.js"></script>
   </body>
